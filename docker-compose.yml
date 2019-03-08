@@ -4,6 +4,13 @@ services:
     server:
         image: khutran/product:3
         container_name: server
+        environment:
+            ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST}
         networks:
             vmms_network:
                 ipv4_address: 172.20.0.4
@@ -26,10 +33,11 @@ services:
         image: 'bitnami/mysql:latest'
         container_name: mysql
         environment:
-            MYSQL_ROOT_PASSWORD: xxxxxxx
-            MYSQL_USER: vicoders
-            MYSQL_PASSWORD: xxxxxxx
-            MYSQL_DATABASE: xxxxxxx
+            ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_ROOT_HOST: 0.0.0.0 
        
         networks:
