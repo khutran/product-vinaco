@@ -1,0 +1,3 @@
+var/lib/mysql
+etc/bitnami/mysql
+logs/nginx
