@@ -25,7 +25,6 @@ services:
             - ./logs/nginx:/var/log/nginx
         depends_on:
             - mysql
-        command: crontab -l | { cat; echo "0 3 * * *  sh /backupdb.sh >/dev/null 2>&1"; } | crontab -
         restart: always
 
     #MySQL config
