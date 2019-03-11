@@ -23,7 +23,7 @@ services:
             - ./etc/letsencrypt/:/etc/letsencrypt/
             - ./var/backup/:/var/www/backup/
             - ./logs/nginx:/var/log/nginx
-            - ./var/cron:/root/cron
+            - ./cron:/root/www-data
         depends_on:
             - mysql
         restart: always
