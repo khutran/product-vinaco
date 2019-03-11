@@ -2,7 +2,7 @@ version: '3'
 
 services:
     server:
-        build: ./docker/mysql
+        build: ./docker/server
         image: server
         container_name: server
         environment:
