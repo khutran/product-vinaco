@@ -23,9 +23,10 @@ services:
             - ./etc/letsencrypt/:/etc/letsencrypt/
             - ./var/backup/:/var/www/backup/
             - ./logs/nginx:/var/log/nginx
-            - ./cron:/root/www-data
+            - ./cron:/root/crontabs
         depends_on:
             - mysql
+        command: ["cat", "/root/crontabs/contabs.txt", ">>", "/var/spool/cron/crontabs/root"]
         restart: always
 
     #MySQL config
