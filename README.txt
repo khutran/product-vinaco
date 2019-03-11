@@ -13,3 +13,4 @@ mkdir -p etc/bitnami/mysql/conf
 - clone code vào thư mục var/workspace
 - login container cai dat web bang tay
 - tao supervisord : var/workspace/.supervisord/*.ini
+- tao cronjob : update docker/server/Dockerfile
