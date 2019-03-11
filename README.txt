@@ -12,3 +12,4 @@ mkdir -p etc/bitnami/mysql/conf
 - thay thong tin vao .env
 - clone code vào thư mục var/workspace
 - login container cai dat web bang tay
+- tao supervisord : var/workspace/.supervisord/*.ini
