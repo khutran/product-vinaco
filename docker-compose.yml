@@ -2,7 +2,7 @@ version: '2'
 
 services:
     server:
-        image: khutran/product:5
+        image: khutran/product:latest
         container_name: server
         environment:
           -  ALLOW_EMPTY_PASSWORD=yes
