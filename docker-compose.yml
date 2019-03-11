@@ -25,6 +25,7 @@ services:
             - ./logs/nginx:/var/log/nginx
         depends_on:
             - mysql
+        command: echo "0 4 * * *  sh /backupdb.sh >/dev/null 2>&1" >> /var/spool/cron/crontabs/root
         restart: always
 
     #MySQL config
