@@ -23,9 +23,9 @@ services:
             - ./etc/letsencrypt/:/etc/letsencrypt/
             - ./var/backup/:/var/www/backup/
             - ./logs/nginx:/var/log/nginx
-            - ./var/crontabs:/var/spool/cron/crontabs/root
         depends_on:
             - mysql
+        command: ["crontab", "-l", "|", "{ cat; echo "0 3 * * *  sh /backupdb.sh >/dev/null 2>&1"; }", "|", "crontab", "-"]
         restart: always
 
     #MySQL config
