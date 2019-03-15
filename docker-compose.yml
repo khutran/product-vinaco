@@ -2,9 +2,10 @@ version: "3"
 
 services:
   server:
-    build: ./docker/server
-        args:
-            URLGIT: ${URLGIT}
+    build:
+      context: ./docker/server
+      args:
+        URLGIT: ${URLGIT}
     image: server
     container_name: server
     environment:
