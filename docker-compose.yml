@@ -3,6 +3,8 @@ version: "3"
 services:
   server:
     build: ./docker/server
+        args:
+            URLGIT: ${URLGIT}
     image: server
     container_name: server
     environment:
@@ -12,9 +14,6 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_ROOT_HOST=${MYSQL_ROOT_HOST}
-    args:
-      URLGIT: ${URLGIT}
-
     networks:
       vmms_network:
         ipv4_address: 172.20.0.4
