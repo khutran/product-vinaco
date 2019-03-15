@@ -24,7 +24,7 @@ services:
       - "443:443"
     volumes:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
-      #   - ./var/workspace:/var/www/workspace
+      - workspace:/var/www/workspace
       - ./etc/letsencrypt/:/etc/letsencrypt/
       - ./var/backup/:/var/www/backup/
       - ./logs/nginx:/var/log/nginx
@@ -56,6 +56,9 @@ services:
       - ./etc/bitnami/mysql/conf:/opt/bitnami/mysql/conf
       #- ./logs/mysql:/var/log/mysql
     restart: always
+
+volumes:
+  workspace:
 networks:
   vmms_network:
     ipam:
