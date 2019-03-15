@@ -6,6 +6,7 @@ services:
       context: ./docker/server
       args:
         URLGIT: ${URLGIT}
+        BRANCH: ${BRANCH}
     image: server
     container_name: server
     environment:
@@ -23,7 +24,7 @@ services:
       - "443:443"
     volumes:
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
-      - ./var/workspace:/var/www/workspace
+      #   - ./var/workspace:/var/www/workspace
       - ./etc/letsencrypt/:/etc/letsencrypt/
       - ./var/backup/:/var/www/backup/
       - ./logs/nginx:/var/log/nginx
