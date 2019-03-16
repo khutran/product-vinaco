@@ -20,9 +20,7 @@ RUN sed -i \
     -e "s/DB_PASSWORD=secret/DB_PASSWORD=${MYSQL_PASSWORD}/g" \
     .env
 
-RUN composer install \
-    composer dump-autoload -o
-
+RUN composer install 
 RUN php artisan migrate --seed
 
 EXPOSE 443 80
