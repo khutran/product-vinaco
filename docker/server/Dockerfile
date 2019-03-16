@@ -13,10 +13,12 @@ RUN apk add --no-cache git
 RUN git clone ${URLGIT} .
 RUN git checkout ${BRANCH} 
 
-RUN cp .env.example .env \
-    sed -i "s/DB_DATABASE=vicoders_vinaco/DB_DATABASE=${MYSQL_DATABASE}/g" .env \
-    sed -i "s/DB_USERNAME=homestead/DB_USERNAME=${MYSQL_USER}/g" .env \
-    sed -i "s/DB_PASSWORD=secret/DB_PASSWORD=${MYSQL_PASSWORD}/g" .env
+RUN cp .env.example .env
+RUN sed -i \
+    -e "s/DB_DATABASE=vicoders_vinaco/DB_DATABASE=${MYSQL_DATABASE}/g" \
+    -e "s/DB_USERNAME=homestead/DB_USERNAME=${MYSQL_USER}/g" \
+    -e "s/DB_PASSWORD=secret/DB_PASSWORD=${MYSQL_PASSWORD}/g" \
+    .env
 
 RUN composer install \
     composer dump-autoload -o
