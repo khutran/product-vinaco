@@ -1,6 +1,30 @@
 version: "3"
 
 services:
+  #MySQL config
+  mysql:
+    #build: ./docker/mysql
+    image: "bitnami/mysql:latest"
+    container_name: mysql
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_HOST=0.0.0.0
+
+    networks:
+      vmms_network:
+        ipv4_address: 172.20.0.3
+    ports:
+      - "3306:3306"
+    volumes:
+      #- ./etc/mysql:/root
+      - ./var/lib/mysql:/bitnami
+      - ./etc/bitnami/mysql/conf:/opt/bitnami/mysql/conf
+      #- ./logs/mysql:/var/log/mysql
+    restart: always
   server:
     build:
       context: ./docker/server
@@ -34,31 +58,6 @@ services:
       - ./logs/nginx:/var/log/nginx
     depends_on:
       - mysql
-    restart: always
-
-  #MySQL config
-  mysql:
-    #build: ./docker/mysql
-    image: "bitnami/mysql:latest"
-    container_name: mysql
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_ROOT_HOST=0.0.0.0
-
-    networks:
-      vmms_network:
-        ipv4_address: 172.20.0.3
-    ports:
-      - "3306:3306"
-    volumes:
-      #- ./etc/mysql:/root
-      - ./var/lib/mysql:/bitnami
-      - ./etc/bitnami/mysql/conf:/opt/bitnami/mysql/conf
-      #- ./logs/mysql:/var/log/mysql
     restart: always
 
 volumes:
