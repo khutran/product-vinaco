@@ -23,7 +23,7 @@ RUN sed -i \
     .env
 
 RUN composer install 
-RUN php artisan migrate --seed
+#RUN php artisan migrate --seed
 
 EXPOSE 443 80
 
