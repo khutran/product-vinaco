@@ -6,6 +6,7 @@ ARG BRANCH
 ARG MYSQL_USER
 ARG MYSQL_PASSWORD
 ARG MYSQL_DATABASE
+ARG MYSQL_ROOT_HOST
 #RUN crontab -l | { cat; echo "0 3 * * *  sh /backupdb.sh >/dev/null 2>&1"; } | crontab -
 
 RUN apk add --no-cache git
@@ -18,6 +19,7 @@ RUN sed -i \
     -e "s/DB_DATABASE=vicoders_vinaco/DB_DATABASE=${MYSQL_DATABASE}/g" \
     -e "s/DB_USERNAME=homestead/DB_USERNAME=${MYSQL_USER}/g" \
     -e "s/DB_PASSWORD=secret/DB_PASSWORD=${MYSQL_PASSWORD}/g" \
+    -e "s/DB_HOST=127.0.0.1/DB_HOST=${MYSQL_ROOT_HOST}/g" \
     .env
 
 RUN composer install 
