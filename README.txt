@@ -10,7 +10,6 @@ mkdir -p etc/bitnami/mysql/conf
 
 - coppy .env.example .env
 - thay thong tin vao .env
-- clone code vào thư mục var/workspace
-- login container cai dat web bang tay
+- login container : php artisan migrate --seed
 - tao supervisord : var/workspace/.supervisord/*.ini
 - tao cronjob : update docker/server/Dockerfile
